@@ -369,6 +369,30 @@ Facts that shape the code:
   <https://github.com/selldone-custom-layouts/official-molino> (`origin`; `upstream` is
   selldone/storefront, fetch-only), with the README, `selldone-layout.json`, screenshots from
   the live shop in `docs/screenshots/` and the wiki's source in `docs/wiki/`.
+- **0.2.31 (7 November 2026): a tester's feedback.**
+  - **Product photos at the size they are shown.** Selldone keeps every photo at 1000×1000
+    (about 110KB as WebP) and its CDN offers only 64 and 128 thumbnails, so a 200px card
+    pulled the whole photo. Cards, rows, the mosaic, seller cards, Often added and the
+    journal's mini products now carry a `srcset` (`productSrcset` in `kalio-catalog.ts`):
+    Selldone's 128 thumbnail and 256–768 from the kalio Worker's `/img` resizer (Cloudflare
+    Images, AVIF/WebP at q65, cached a year, Selldone's CDN only). The full photo stays the
+    `src`; an image that fails drops the srcset (`dropSrcset`, and `kalio_srcset_failed` in
+    SShopProductCard). Measured on the dev server: an aisle 597KB → 84KB of photos on a
+    computer, the home 1.4MB → 252KB on a phone.
+  - **Compare that does not look like loading.** The card's ring icon (`data_saver_on`) and
+    the blinking dot once picked read as a spinner; the floating button was a ring that filled
+    up. Now a "☐ Compare" / "☑ Comparing" pill in the picture's corner (it stays while picked),
+    a "⇄ Compare 2" pill at the foot that bumps once when a product joins (no bump with
+    reduced motion), and the product page's compare button with a tick box
+    (SShopProductCard, SComparisonButton, SProductSectionExtraButtons in the components patch).
+  - **No sound when signing in.** Selldone's SShopLogin and ShopEmailLogin played a "tick";
+    both are silent.
+  - **One word: Saved.** The account menu, the saved page and its title said Favorites,
+    Favorite Items and Wishlist; all say Saved, like the header (translate patch). The
+    product page's heart says Save / Saved.
+  - **States not only in colour.** A dark focus ring on everything that can be pressed, the
+    words of filled buttons underlined on hover, and a chosen size with a thicker ring, bold
+    words and a tick.
 - **0.2.30 (7 November 2026): ratings and reviews, design A** of three
   (`../kalio-design/reviews-options/`). molino has no reviews, so they had never been drawn;
   with ratings, Selldone's yellow stars appeared on every card ("4.2 ● 19 rev…", cut off) and

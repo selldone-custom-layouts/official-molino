@@ -42,7 +42,7 @@
         <small>off</small>
       </span>
       <span aria-hidden="true" class="k-mtile__pics">
-        <img v-for="product in tile.pics" :key="product.id" :src="picture(product)" alt="" loading="lazy" />
+        <img v-for="product in tile.pics" :key="product.id" :src="picture(product)" :srcset="srcset(product)" alt="" loading="lazy" sizes="(max-width: 600px) 30vw, 140px" @error="dropSrcset" />
       </span>
     </router-link>
   </section>
@@ -60,6 +60,8 @@ import {
   tintFor,
   vendorImage,
   vendors,
+  productSrcset,
+  dropSrcset,
 } from "./kalio-catalog";
 
 const HEADLINES = [
@@ -113,6 +115,10 @@ export default {
   },
 
   methods: {
+    srcset(product) {
+      return productSrcset(product);
+    },
+    dropSrcset,
     picture(product) {
       return productImage(product);
     },
