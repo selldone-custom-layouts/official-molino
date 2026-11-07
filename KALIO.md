@@ -369,6 +369,7 @@ Facts that shape the code:
   <https://github.com/selldone-custom-layouts/official-molino> (`origin`; `upstream` is
   selldone/storefront, fetch-only), with the README, `selldone-layout.json`, screenshots from
   the live shop in `docs/screenshots/` and the wiki's source in `docs/wiki/`.
+- **0.2.32 (7 November 2026):** the Layout's own logo (assets/brand/, kalio-brand.ts) before the wordmark in the header, menu and footer and as the tab icon; "Compare" moved off the picture to a quiet "☐ Compare" line at the foot of the card ("☑ Comparing" once picked), as big shops place it; the journal leaves Selldone's sample posts out once the shop has its own (four grocery articles were published on 7 November 2026).
 - **0.2.31 (7 November 2026): a tester's feedback.**
   - **Product photos at the size they are shown.** Selldone keeps every photo at 1000×1000
     (about 110KB as WebP) and its CDN offers only 64 and 128 thumbnails, so a 200px card

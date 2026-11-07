@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>molino</title>
+  <circle cx="32" cy="32" r="32" fill="#155b42"/>
+  <path d="M32 32C31 21 37 12 49 9C51 21 44 30 32 32Z" fill="#f4efe1"/>
+  <path d="M32 32C43 31 52 37 55 49C43 51 34 44 32 32Z" fill="#8fd1a8"/>
+  <path d="M32 32C33 43 27 52 15 55C13 43 20 34 32 32Z" fill="#f4efe1"/>
+  <path d="M32 32C21 33 12 27 9 15C21 13 30 20 32 32Z" fill="#8fd1a8"/>
+  <circle cx="32" cy="32" r="4" fill="#155b42"/>
+</svg>
