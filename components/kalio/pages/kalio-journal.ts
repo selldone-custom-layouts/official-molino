@@ -10,6 +10,8 @@
  *                        not the article's own id).
  */
 
+import { withPhoto } from "./kalio-journal-photos";
+
 export interface JournalQuery {
   page?: number;
   limit?: number;
@@ -32,7 +34,7 @@ function withoutSamples(list: any[]): any[] {
   const shop = (window as any).shop;
   if (!shop?.id || !Array.isArray(list)) return list || [];
   if (list.some((article) => !isDemoPost(article, shop))) ownPosts = true;
-  return ownPosts ? list.filter((article) => !isDemoPost(article, shop)) : list;
+  return (ownPosts ? list.filter((article) => !isDemoPost(article, shop)) : list).map(withPhoto);
 }
 
 export function journalPage(q: JournalQuery): Promise<{ articles: any[]; total: number }> {
