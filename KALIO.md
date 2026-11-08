@@ -269,6 +269,7 @@ Facts that shape the code:
   swirled crumb"); the blog holds Selldone's demo posts (power tools,
   gaming microphones); About/Terms/Privacy are not written; "DairyCove
   Whole Milk 1 gal" opens on its 1 quart size.
+- **0.2.36 (8 November 2026):** no line under words or icons anywhere (the owner, after a line showed under "Compare" and its box icon: "never put these lines under text or icons"). Links, buttons, menus, tabs and chips carry no underline at rest, on hover, focus or press; the line under a product card's "Compare" came from the card being a link, whose hover underline reached every word inside it. The hover underline on filled buttons (a tester's colour-blind request of 7 November) is gone too; those buttons deepen in colour. Only links inside an article's own text keep their line, and struck-through old prices are untouched.
 - **0.2.24 (5 November 2026): the owner's picks from two mockups each.**
   - *Home shelf, buy strip (A)* (`kalio-design/shelf-step-options`): the
     label's foot is "+ Add", and in the basket "− n +" in the same place
