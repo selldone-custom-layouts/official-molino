@@ -88,6 +88,10 @@ You can also tell your AI agent "use the yellow theme" or "make it dark": `AGENT
 The header's Theme button (palettes, Custom colour, Light / Dark) is a showcase feature. It shows only on Molino's own showcase shop (molino, Selldone shop 15645), so when you import Molino into your shop, your shoppers see Molino in its designed colours, with no Theme button. The Layout looks exactly as it does without the switcher, and any stored choice is ignored. To offer the switcher to your shoppers, set `themeSwitcher: "on"` in `components/kalio/molino-theme.settings.ts`, then build and upload. `themeSwitcher: "off"` hides it everywhere.
 <!-- THEME:END -->
 
+<p><img src="docs/screenshots/desktop-theme-panel.jpg" alt="The Theme panel in the header: palettes, Custom colour, Light and Dark" width="62%"> <img src="docs/screenshots/phone-home-dark.jpg" alt="Molino in dark mode on a phone" width="18%"></p>
+
+<img src="docs/screenshots/desktop-home-dark.jpg" alt="Molino in dark mode on a computer" width="62%">
+
 ## Quick start (developers)
 
 ```bash
