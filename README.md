@@ -73,6 +73,21 @@ All screenshots are taken from the live shop, [molino.selldone.shop](https://mol
 
 The wiki's source is also in this repository, in [`docs/wiki/`](docs/wiki/), so an AI agent that clones the repo has the same instructions.
 
+<!-- THEME:START -->
+### Theme and colours
+
+Choose Molino's colours in one file, `components/kalio/molino-theme.settings.ts`:
+
+- `palette`: green, blue, violet, teal, orange;
+- or `brandColor`: any `#RRGGBB`, made readable automatically (`textOnBrand: "auto"` keeps a light brand such as yellow, with dark words);
+- `mode`: light or dark;
+- `themeSwitcher`: showcase, on or off.
+
+You can also tell your AI agent "use the yellow theme" or "make it dark": `AGENTS.md` (section "Theme") tells it what to change. Then build and upload. See the wiki page [Theme and colours](https://github.com/selldone-custom-layouts/official-molino/wiki/Theme-and-colours).
+
+The header's Theme button (palettes, Custom colour, Light / Dark) is a showcase feature. It shows only on Molino's own showcase shop (molino, Selldone shop 15645), so when you import Molino into your shop, your shoppers see Molino in its designed colours, with no Theme button. The Layout looks exactly as it does without the switcher, and any stored choice is ignored. To offer the switcher to your shoppers, set `themeSwitcher: "on"` in `components/kalio/molino-theme.settings.ts`, then build and upload. `themeSwitcher: "off"` hides it everywhere.
+<!-- THEME:END -->
+
 ## Quick start (developers)
 
 ```bash
