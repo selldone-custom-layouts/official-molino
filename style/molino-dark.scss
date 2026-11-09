@@ -43,6 +43,17 @@ html .text-red {
 }
 
 html.ml-dark {
+  /* The row and hero arrows stay white discs with a dark arrow (the build
+     step keeps their ground light; their ink token turns light). */
+  .t-arrow,
+  .k-rail__arrow {
+    color: #10231b !important;
+
+    .v-icon {
+      color: inherit !important;
+    }
+  }
+
   /* ── Light islands ──
      The home mosaic's tiles keep their pastel aisle tints, and the yellow
      offer tag stays yellow: inside them the dark tokens go back to their
