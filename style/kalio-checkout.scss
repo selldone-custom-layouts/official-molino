@@ -931,7 +931,12 @@
     }
 
     &.-off {
-      background: #8fa69b;
+      background: var(--k-wash); /* waiting: a quiet ground with readable words (white on the faded green was 2.6:1) */
+      color: var(--k-muted) !important;
+
+      .v-icon {
+        color: inherit !important;
+      }
     }
   }
 
@@ -1179,7 +1184,12 @@
     }
 
     &:disabled {
-      background: #8fa69b;
+      background: var(--k-wash); /* waiting: a quiet ground with readable words (white on the faded green was 2.6:1) */
+      color: var(--k-muted) !important;
+
+      .v-icon {
+        color: inherit !important;
+      }
     }
   }
 
