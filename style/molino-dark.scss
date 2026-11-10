@@ -71,8 +71,10 @@ html.ml-dark {
   /* ── Light islands ──
      The home mosaic's tiles keep their pastel aisle tints, and the yellow
      offer tag stays yellow: inside them the dark tokens go back to their
-     light values, so the words on them stay dark in every palette. */
-  .k-mtile:not(.-lead),
+     light values, so the words on them stay dark in every palette. The
+     lead tile too: its ground is its tint only a step deeper (still pale),
+     and it had kept the light dark-mode words, 1.0:1 (0.2.47). */
+  .k-mtile,
   .k-shelf__tag.-offer {
     --k-ink: #10231b;
     --k-ink-2: #2b3d35;
