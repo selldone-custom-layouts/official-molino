@@ -16,14 +16,14 @@
        title, the home route); Selldone's gradient tile and black bar
        become an aisle sign with the way back. -->
   <section class="k-404">
-    <p class="k-eyebrow">Page not found · 404</p>
-    <h1 class="k-404__title">This aisle doesn't exist.</h1>
+    <p class="k-eyebrow">{{ t("notfound.eyebrow", "Page not found · 404") }}</p>
+    <h1 class="k-404__title">{{ t("notfound.title", "This aisle doesn't exist.") }}</h1>
     <p class="k-404__lede">
-      The link may be out of date, or the address may have a typo.
+      {{ t("notfound.lede", "The link may be out of date, or the address may have a typo.") }}
     </p>
     <div class="k-404__acts">
       <router-link :to="{ path: '/' }" class="k-btn k-btn--solid">
-        Back to {{ shop ? shop.title : $t("global.commons.home") }}
+        {{ t("notfound.back", "Back to {place}", { place: shop ? shop.title : $t("global.commons.home") }) }}
       </router-link>
     </div>
   </section>

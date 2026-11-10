@@ -31,33 +31,33 @@
       </div>
       <dl class="k-story__facts">
         <template v-if="sellers.length">
-          <dt>{{ sellers.length === 1 ? "Seller" : "Sellers" }}</dt>
+          <dt>{{ t("about.facts.sellers", { one: "Seller", other: "Sellers" }, { n: sellers.length }) }}</dt>
           <dd>{{ sellers.map((it) => it.name).join(" · ") }}</dd>
         </template>
         <template v-if="aisleList.length">
-          <dt>Aisles</dt>
+          <dt>{{ t("about.facts.aisles", "Aisles") }}</dt>
           <dd>{{ aisleLine }}</dd>
         </template>
         <template v-if="productCount">
-          <dt>Products</dt>
-          <dd>About {{ productCount }}, in one basket</dd>
+          <dt>{{ t("about.facts.products", "Products") }}</dt>
+          <dd>{{ t("about.facts.productCount", { one: "About {n}, in one basket", other: "About {n}, in one basket" }, { n: productCount }) }}</dd>
         </template>
-        <dt>Contact</dt>
+        <dt>{{ t("about.facts.contact", "Contact") }}</dt>
         <dd>
-          <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }">Contact the shop</router-link>
+          <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }">{{ t("contact.shop", "Contact the shop") }}</router-link>
         </dd>
       </dl>
     </aside>
 
     <div class="k-story__main">
-      <p class="k-eyebrow">A note from {{ shopTitle }}</p>
-      <h1 class="k-story__title">{{ missing || busy ? sample.title : `About ${shopTitle}` }}</h1>
+      <p class="k-eyebrow">{{ t("about.eyebrow", "A note from {shop}", { shop: shopTitle }) }}</p>
+      <h1 class="k-story__title">{{ missing || busy ? sample.title : t("about.title", "About {shop}", { shop: shopTitle }) }}</h1>
 
       <div v-if="busy" aria-hidden="true" class="k-legal__loading"><span></span><span></span><span></span></div>
 
       <template v-else-if="missing">
         <kalio-sample-note>
-          This letter is general text written to show the page. It is not {{ shopTitle }}'s real story; the timeline is an example.
+          {{ t("about.sampleNote", "This letter is general text written to show the page. It is not {shop}'s real story; the timeline is an example.", { shop: shopTitle }) }}
         </kalio-sample-note>
         <p class="k-story__lead">{{ sample.lead }}</p>
         <div class="k-prose">
@@ -79,8 +79,8 @@
       <div v-else class="k-story__real k-prose" v-html="profile.body"></div>
 
       <div v-if="!busy" class="k-story__acts">
-        <router-link :to="catalogueRoute" class="k-btn k-btn--solid">Start shopping</router-link>
-        <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }" class="k-btn k-btn--line">Contact the shop</router-link>
+        <router-link :to="catalogueRoute" class="k-btn k-btn--solid">{{ t("pages.startShopping", "Start shopping") }}</router-link>
+        <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }" class="k-btn k-btn--line">{{ t("contact.shop", "Contact the shop") }}</router-link>
       </div>
     </div>
   </div>
@@ -90,6 +90,7 @@
 import KalioSampleNote from "@app-storefront/components/kalio/pages/KalioSampleNote.vue";
 import { aboutSample, plainText } from "@app-storefront/components/kalio/pages/kalio-sample-pages";
 import { aisles, catalogueRoute, countProducts, productImage, vendors } from "@app-storefront/components/kalio/kalio-catalog";
+import { t } from "@app-storefront/components/kalio/i18n/kalio-i18n";
 
 export default {
   name: "StorefrontPageOfficialAboutUs",
@@ -108,7 +109,7 @@ export default {
 
   computed: {
     shopTitle() {
-      return this.$shop?.title || "This shop";
+      return this.$shop?.title || t("sample.thisShop", "This shop");
     },
     sample() {
       return aboutSample(this.shopTitle);
@@ -119,12 +120,13 @@ export default {
     aisleLine() {
       const names = this.aisleList.map((it) => it.title || it.name);
       if (names.length <= 3) return names.join(", ");
-      return `${names.length}: ${names.slice(0, 3).join(", ")} and ${names.length - 3} more`;
+      const shown = names.slice(0, 3).join(", ");
+      return t("about.facts.aisleLine", { one: "{count}: {names} and {n} more", other: "{count}: {names} and {n} more" }, { count: names.length, names: shown, n: names.length - 3 });
     },
   },
 
   created() {
-    this.setPageTitle?.("About us");
+    this.setPageTitle?.(t("about.pageTitle", "About us"));
 
     window.axios
       .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "about-us"))

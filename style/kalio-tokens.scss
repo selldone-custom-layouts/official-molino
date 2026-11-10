@@ -48,8 +48,12 @@
   --k-star-off: #8f8676; /* an empty star is an icon: 3:1 or more on white */
 
   /* Type */
-  --k-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --k-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* The script faces (Arabic, Gurmukhi, Devanagari) come after the Latin one:
+     a glyph DM Sans or Fraunces lacks falls through to them. kalio-i18n loads
+     each only when its language is picked; until then the system face shows. */
+  --k-scripts: "Noto Sans Arabic", "Noto Sans Gurmukhi", "Noto Sans Devanagari";
+  --k-display: "Fraunces", var(--k-scripts), Georgia, "Times New Roman", serif;
+  --k-body: "DM Sans", var(--k-scripts), system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Geometry */
   --k-radius: 20px;
@@ -125,8 +129,8 @@ s:has(> .u--price) {
     content: "";
     position: absolute;
     top: 55%;
-    right: -1px;
-    left: -1px;
+    inset-inline-end: -1px;
+    inset-inline-start: -1px;
     height: 1.5px;
     border-radius: 1px;
     background: currentColor;

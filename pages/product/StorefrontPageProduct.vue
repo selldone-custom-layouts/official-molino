@@ -31,7 +31,7 @@
         <slot name="header" :center="true"></slot>
 
         <!-- ⬬⬬⬬⬬ Breadcrumb, admin shortcut, QR ⬬⬬⬬⬬ -->
-        <nav aria-label="Breadcrumb" class="k-crumbs">
+        <nav :aria-label="t('pdp.breadcrumb', 'Breadcrumb')" class="k-crumbs">
           <router-link :to="{ name: window.$storefront.routes.SHOP_PAGE }">{{ $shop.title }}</router-link>
           <template v-if="product && product.category">
             <v-icon aria-hidden="true" class="k-flip" size="16">chevron_right</v-icon>
@@ -79,7 +79,7 @@
       <!-- ▁▁▁▁▁▁ 🞇 Highlights (the product's pros and cons) 🞇 ▁▁▁▁▁▁ -->
       <div v-if="has_pros_cons" :style="{ order: getOrder('pros') }">
         <section aria-labelledby="k-highlights" class="k-pdp-block k-highlights">
-          <h2 id="k-highlights" class="k-pdp-block__title">Highlights</h2>
+          <h2 id="k-highlights" class="k-pdp-block__title">{{ t("pdp.highlights", "Highlights") }}</h2>
           <div class="k-highlights__cols">
             <ul v-if="pros_list.length" class="k-highlights__list -pros">
               <li v-for="item in pros_list" :key="'p' + item.key">
@@ -99,7 +99,7 @@
       <!-- ▁▁▁▁▁▁ 🞇 About this product (article) 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('review') }">
         <section aria-labelledby="k-about" class="k-pdp-block k-about">
-          <h2 v-if="article" id="k-about" class="k-pdp-block__title">About this product</h2>
+          <h2 v-if="article" id="k-about" class="k-pdp-block__title">{{ t("pdp.about", "About this product") }}</h2>
           <s-product-article hide-title></s-product-article>
         </section>
       </div>
@@ -130,7 +130,7 @@
       <!-- ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ Reviews ▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅ -->
       <div :style="{ order: getOrder('comments') }">
         <section aria-labelledby="k-reviews" class="k-pdp-block k-reviews">
-          <h2 id="k-reviews" class="k-pdp-block__title">Reviews</h2>
+          <h2 id="k-reviews" class="k-pdp-block__title">{{ t("reviews.title", "Reviews") }}</h2>
           <!-- Design A (7 November 2026): a summary column beside the
                reviews. A guest's sign-in prompt is in the summary. -->
           <kalio-reviews></kalio-reviews>
@@ -147,7 +147,7 @@
             name: window.$storefront.routes.SHOP_CATEGORY_PAGE,
             params: { category_name: product.category.name },
           }"
-          :title="'More from ' + (product.category.title || product.category.name)"
+          :title="t('pdp.moreFrom', 'More from {aisle}', { aisle: product.category.title || product.category.name })"
           sort="bestselling"
         />
       </div>

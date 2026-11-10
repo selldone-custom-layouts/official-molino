@@ -21,6 +21,7 @@
  * #161d2e; each dark "text" colour on that card — 11.97, 7.86, 9.11, 11.60,
  * 9.97.
  */
+import { t } from "./i18n/kalio-i18n";
 import type { ThemeSwitcherConfig } from "../theme-switcher/theme-switcher";
 import { THEME_SETTINGS } from "./molino-theme.settings";
 
@@ -48,31 +49,41 @@ export const MOLINO_THEME: ThemeSwitcherConfig = {
   palettes: [
     {
       id: "green",
-      name: "Molino green",
+      get name() {
+        return t("molino.palette.green", "Molino green");
+      },
       light: { primary: "#155b42", deep: "#0e3f2e", lift: "#1f7a57", soft: "#e9f3ed", onPrimary: "#ffffff", text: "#155b42" },
       dark: { primary: "#1f7a57", deep: "#155b42", lift: "#2f8a5e", soft: "#13332a", onPrimary: "#ffffff", text: "#86efac" },
     },
     {
       id: "blue",
-      name: "Ocean blue",
+      get name() {
+        return t("molino.palette.blue", "Ocean blue");
+      },
       light: { primary: "#0a4bd8", deep: "#0838a8", lift: "#2563eb", soft: "#e8efff", onPrimary: "#ffffff", text: "#0a4bd8" },
       dark: { primary: "#2563eb", deep: "#1d4ed8", lift: "#3b82f6", soft: "#16264d", onPrimary: "#ffffff", text: "#8fb0ff" },
     },
     {
       id: "violet",
-      name: "Violet",
+      get name() {
+        return t("molino.palette.violet", "Violet");
+      },
       light: { primary: "#6d28d9", deep: "#5b21b6", lift: "#7c3aed", soft: "#efe8fd", onPrimary: "#ffffff", text: "#6d28d9" },
       dark: { primary: "#8046ee", deep: "#6d28d9", lift: "#8b5cf6", soft: "#2a1d4d", onPrimary: "#ffffff", text: "#c4b5fd" },
     },
     {
       id: "teal",
-      name: "Teal",
+      get name() {
+        return t("molino.palette.teal", "Teal");
+      },
       light: { primary: "#0c6680", deep: "#164e63", lift: "#0e7490", soft: "#e0f4f8", onPrimary: "#ffffff", text: "#0c6680" },
       dark: { primary: "#0e7490", deep: "#155e75", lift: "#0891b2", soft: "#123540", onPrimary: "#ffffff", text: "#67e8f9" },
     },
     {
       id: "orange",
-      name: "Sunset orange",
+      get name() {
+        return t("molino.palette.orange", "Sunset orange");
+      },
       light: { primary: "#a93a0b", deep: "#7c2d12", lift: "#c2410c", soft: "#fdeee6", onPrimary: "#ffffff", text: "#a93a0b" },
       dark: { primary: "#c2410c", deep: "#9a3412", lift: "#ea580c", soft: "#3d2215", onPrimary: "#ffffff", text: "#fdba74" },
     },
@@ -140,7 +151,37 @@ export const MOLINO_THEME: ThemeSwitcherConfig = {
 
   metaThemeColor: "light.primary",
   ui: { ink: "var(--k-ink)", muted: "var(--k-muted)", line: "var(--k-line)", surface: "var(--k-card)", font: "var(--k-body)" },
-  labels: { theme: "Theme", palettes: "Colour", mode: "Light or dark", modeTitle: "Mode", light: "Light", dark: "Dark", custom: "Custom colour", adjusted: "Adjusted for readability", brand: "Brand colour" },
+  /* Read when drawn, so they follow the visitor's language (theme.* are the
+     shared Kalio words; the palette names above are Molino's own). */
+  labels: {
+    get theme() {
+      return t("theme.title", "Theme");
+    },
+    get palettes() {
+      return t("theme.palettes", "Colour");
+    },
+    get mode() {
+      return t("theme.mode", "Light or dark");
+    },
+    get modeTitle() {
+      return t("theme.modeTitle", "Mode");
+    },
+    get light() {
+      return t("theme.light", "Light");
+    },
+    get dark() {
+      return t("theme.dark", "Dark");
+    },
+    get custom() {
+      return t("theme.custom", "Custom colour");
+    },
+    get adjusted() {
+      return t("theme.adjusted", "Adjusted for readability");
+    },
+    get brand() {
+      return t("theme.brand", "Brand colour");
+    },
+  },
 
   /* "Custom colour" (the owner, 9 November 2026): any colour, made readable
      by paletteFromColor(). Molino's footer and bands carry pale words on the
