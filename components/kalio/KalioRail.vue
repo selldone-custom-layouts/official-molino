@@ -72,7 +72,7 @@
       <div
         v-for="product in products"
         v-else
-        :key="product.id"
+        :key="`${product.id}-${cardCurrency()}`"
         :style="{ '--k-tint': tintOf(product) }"
         class="k-rail__cell"
       >
@@ -106,6 +106,7 @@
 </template>
 
 <script>
+import { currentCurrency } from "../region-switcher/region";
 import SShopProductCard from "@selldone/components-vue/storefront/product/card/SShopProductCard.vue";
 import KalioSellerLine from "./KalioSellerLine.vue";
 import KalioCardStep from "./KalioCardStep.vue";
@@ -207,6 +208,9 @@ export default {
   },
 
   methods: {
+    /* Selldone's card reads the currency once; keyed by it, the cards redraw
+       the moment the shopper picks another (not a second later with the app). */
+    cardCurrency: currentCurrency,
     fetch() {
       this.busy = true;
 

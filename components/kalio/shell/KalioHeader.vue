@@ -10,7 +10,7 @@
   Every working part is the platform's: the search box and its events (the
   layout's onSearch/onClear), the signed-in account menu
   (SHeaderSectionUser), the basket (the storefront's, shown by Kalio's
-  own drawer, KalioBasketDrawer), the language and currency pickers, sign-in
+  own drawer, KalioBasketDrawer), the language and currency pill, sign-in
   through the app's need-login event, and the basket count from the
   storefront mixin. A shop with custom header code keeps Selldone's header
   (the layout decides), and a native app shell shows none.
@@ -88,20 +88,11 @@
         <v-spacer v-else></v-spacer>
 
         <nav aria-label="Your account" class="k-header__acts">
-          <s-language-selector v-if="!compact" class="k-header__lang" icon-color="#10231b" icon-only></s-language-selector>
-          <u-currency-selector
-            v-if="!compact && $shop.currencies && $shop.currencies.length > 1"
-            :shop="$shop"
-            class="k-header__lang"
-            dense
-            hide-details
-            icon
-            icon-color="#10231b"
-            icon-only
-            single-line
-            small
-            @change="onChangeUserSelectedCurrency"
-          />
+          <!-- Language and currency: one small pill ("EN · DKK"), as on
+               Walmart and Amazon (the owner's choice B, 10 November 2026);
+               on a phone it is a row in the menu. Hidden while the shop has
+               one currency and one language. -->
+          <region-switcher-button v-if="!compact" button-class="k-header__region" />
 
           <template v-if="!compact">
             <router-link v-if="user" :to="ordersRoute" class="k-header__link">
@@ -325,18 +316,14 @@
             <span aria-hidden="true" class="k-drawer__more-chip">
               <v-icon size="20">{{ menu_more ? "expand_less" : "expand_more" }}</v-icon>
             </span>
-            {{ menu_more ? "Show fewer" : `Show ${menuAislesMore.length} more` }}
+            {{ menu_more ? t("menu.showFewer") : t("menu.showMore", { n: menuAislesMore.length }) }}
           </button>
         </template>
 
-        <div class="k-drawer__pickers">
-          <s-language-selector hide-details variant="outlined"></s-language-selector>
-          <u-currency-selector
-            v-if="$shop.currencies && $shop.currencies.length > 1"
-            :shop="$shop"
-            hide-details
-            @change="onChangeUserSelectedCurrency"
-          />
+        <!-- Language and currency: a row that opens a bottom sheet over
+             the menu (the header pill's twin on a phone). -->
+        <div class="k-drawer__region">
+          <region-sheet row-class="k-drawer__link k-drawer__region-row" />
         </div>
       </v-navigation-drawer>
     </teleport>
@@ -347,8 +334,9 @@
 import { BRAND } from "../kalio-brand";
 import { defineAsyncComponent } from "vue";
 import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
-import SLanguageSelector from "@selldone/components-vue/storefront/language/selector/SLanguageSelector.vue";
-import UCurrencySelector from "@selldone/components-vue/ui/currency/selector/UCurrencySelector.vue";
+import RegionSwitcherButton from "../../region-switcher/RegionSwitcherButton.vue";
+import RegionSheet from "../../region-switcher/RegionSheet.vue";
+import { t } from "../../region-switcher/region";
 import KalioBasketDrawer from "./KalioBasketDrawer.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import { aisleImage, aisleRoute, aisles, catalogueRoute, dealsRoute, tintFor } from "../kalio-catalog";
@@ -358,8 +346,8 @@ export default {
   name: "KalioHeader",
   components: {
     SStorefrontSearchBox,
-    SLanguageSelector,
-    UCurrencySelector,
+    RegionSwitcherButton,
+    RegionSheet,
     KalioBasketDrawer,
     SHeaderSectionUser: defineAsyncComponent(
       () => import("@selldone/components-vue/storefront/header/section/user/SHeaderSectionUser.vue"),
@@ -484,6 +472,7 @@ export default {
   },
 
   methods: {
+    t,
     aisleRoute,
     aisleImage,
     tint: tintFor,

@@ -39,6 +39,8 @@ import "@selldone/components-vue/style/fonts/material-design-fonts/material-desi
 import "@selldone/components-vue/style/fonts/lang/fa/lang-fa-iransans.css";
 import { bootThemeSwitcher } from "./components/theme-switcher/theme-switcher";
 import { MOLINO_THEME } from "./components/kalio/molino-theme";
+import { bootRegion, defineMessages } from "./components/region-switcher/region";
+import { MOLINO_MESSAGES } from "./components/kalio/i18n";
 import "./components/kalio/kalio-fonts"; // Kalio typefaces, loaded by the app so they reach production
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
@@ -96,6 +98,8 @@ app.use(components);
 
 // ━━━ Storefront SDK (xapi) ━━━
 StorefrontSDK.Setup(); // Set up the Shop SDK.
+defineMessages(MOLINO_MESSAGES); // Molino's own words, per language
+bootRegion(store); // language + currency: the header pill and the phone menu's sheet
 
 // ━━━ Community SDK (capi) ━━━
 CapiCommunity.Setup(); // Setup community.
