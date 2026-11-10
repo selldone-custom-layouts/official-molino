@@ -8,7 +8,9 @@
   as the merchant set it in Selldone (falling back to the standard pages
   when there is none); and the shopper's account links. The bottom row
   keeps the copyright, Selldone's cookie settings and the powered-by mark,
-  which follows the shop's own copyright-mark setting.
+  which follows the shop's own copyright-mark setting. Just above it, on
+  the showcase shop only, the visitor's Theme row (palettes, Custom colour,
+  Light / Dark).
 
   Everything is read live. A shop with custom footer code keeps Selldone's
   footer (the layout decides).
@@ -96,6 +98,14 @@
         </nav>
       </div>
 
+      <!-- The visitor's theme: palettes, a free Custom colour and Light /
+           Dark, in a strip of its own just above the legal row (the owner,
+           10 November 2026: the header button took room). Only on molino,
+           the showcase shop: elsewhere the strip is not drawn at all. -->
+      <div v-if="theme.enabled" class="k-wrap k-footer__theme">
+        <theme-switcher-row />
+      </div>
+
       <div class="k-wrap k-footer__base">
         <span>© {{ year }} {{ shopTitle }}</span>
         <span class="k-footer__base-links">
@@ -117,6 +127,8 @@ import UCurrencySelector from "@selldone/components-vue/ui/currency/selector/UCu
 import SFooterSectionGdpr from "@selldone/components-vue/storefront/footer/section/gdpr/SFooterSectionGdpr.vue";
 import SFooterSectionSelldone from "@selldone/components-vue/storefront/footer/section/selldone/SFooterSectionSelldone.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
+import ThemeSwitcherRow from "../../theme-switcher/ThemeSwitcherRow.vue";
+import { themeState } from "../../theme-switcher/theme-switcher";
 import { aisleRoute, aisles, catalogueRoute, dealsRoute, sellerRoute, vendorImage, vendors } from "../kalio-catalog";
 
 export default {
@@ -127,12 +139,14 @@ export default {
     UCurrencySelector,
     SFooterSectionGdpr,
     SFooterSectionSelldone,
+    ThemeSwitcherRow,
   },
   inject: ["$shop"],
 
   data() {
     return {
       BRAND,
+      theme: themeState,
       window: window,
       aisleList: [],
       sellerList: [],

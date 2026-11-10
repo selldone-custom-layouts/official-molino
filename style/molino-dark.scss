@@ -1,7 +1,7 @@
 /* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Molino — dark mode, and the theme switcher's loose ends ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
-   The theme switcher (components/kalio/molino-theme.ts, the header's Theme
-   button) turns the page dark by tokens and by the build step that gives
+   The theme switcher (components/kalio/molino-theme.ts, the footer's Theme
+   row) turns the page dark by tokens and by the build step that gives
    every fixed colour a dark value (postcss-dark-tokens). This file holds
    what neither can know. Loaded last (storefront.scss); the build step
    leaves rules that name html.ml-dark alone. */
@@ -82,6 +82,19 @@ html.ml-dark {
     --tsd-surface-ffffff: initial;
     --tsd-text-8a3c1d: initial;
     color: #10231b;
+  }
+
+  /* An aisle chip (the empty basket's "Or start with an aisle") is painted
+     with its aisle's pastel, set inline, which the build step cannot darken,
+     while its words take the light dark-mode ink: white on a pastel. In dark
+     mode the chip is a dark tint of the same hue, with the light ink. */
+  .k-aisle-chip:not(.-on) {
+    background: color-mix(in oklab, var(--k-tint) 16%, var(--k-card)) !important;
+    color: var(--k-ink) !important;
+  }
+
+  .k-aisle-chip:not(.-on):hover {
+    background: color-mix(in oklab, var(--k-tint) 26%, var(--k-card)) !important;
   }
 
   & .text-red {

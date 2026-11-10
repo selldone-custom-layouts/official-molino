@@ -1,7 +1,7 @@
 /*
- * Molino — the theme switcher's config (the header's "Theme" button: the
- * owner's rule of 9 November 2026, the same on every molino Layout as on
- * Digito and Besti).
+ * Molino — the theme switcher's config (the footer's "Theme" row, just above
+ * the copyright line: the owner's rule of 10 November 2026, the same on every
+ * molino Layout as on Digito and Besti; it was a header button from 9 November).
  *
  * The switcher itself is Layout-agnostic (components/theme-switcher/); this
  * file is everything Molino-specific: the palettes, which Kalio variables
