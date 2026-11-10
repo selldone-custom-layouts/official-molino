@@ -587,6 +587,80 @@ $k-header-strip: 46px;
     }
   }
 
+  /* The phone menu's folded aisles: they open inline under the first six
+     (height and fade, each row 20ms after the one above). */
+  &__more {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms ease;
+
+    &.-open {
+      grid-template-rows: 1fr;
+    }
+
+    .k-drawer__link {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    &.-open .k-drawer__link {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(var(--i, 0) * 20ms);
+    }
+  }
+
+  &__more-in {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* "Show N more" / "Show fewer": a row like the aisles above it, a tinted
+     chip in the ring's place with the chevron, the words in the link ink. */
+  &__more-btn {
+    width: 100%;
+    margin: 0;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--m-link) !important;
+    font-family: inherit;
+    font-weight: 700;
+    text-align: start;
+    cursor: pointer;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover {
+      background: var(--k-wash) !important;
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px var(--m-link);
+    }
+  }
+
+  &__more-chip {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--k-green-soft);
+
+    .v-icon {
+      color: var(--m-link) !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__more,
+    &__more .k-drawer__link {
+      transition: none !important;
+    }
+  }
+
   &__pickers {
     display: grid;
     gap: 10px;
