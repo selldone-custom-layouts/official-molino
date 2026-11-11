@@ -109,15 +109,16 @@ html[dir="rtl"] {
     mask-image: linear-gradient(270deg, transparent, #000 72px);
   }
 
-  .k-strip.-more > .k-strip__row {
+  /* (the states sit on the strip's frame, not on .k-strip: 0.2.59) */
+  .k-strip__frame.-more > .k-strip__row {
     mask-image: linear-gradient(to left, #000 calc(100% - 72px), transparent);
   }
 
-  .k-strip.-back > .k-strip__row {
+  .k-strip__frame.-back > .k-strip__row {
     mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
   }
 
-  .k-strip.-more.-back > .k-strip__row {
+  .k-strip__frame.-more.-back > .k-strip__row {
     mask-image: linear-gradient(to left, transparent, #000 72px, #000 calc(100% - 72px), transparent);
   }
 }
@@ -138,4 +139,22 @@ html[dir="rtl"] {
 .v-tab__slider,
 .v-slide-group-item--active > .v-tab__slider {
   display: none !important;
+}
+
+/* A scrolling row gives its pills room (Walio and Dino found it, 0.2.59).
+   A row that scrolls clips at its own edge, and the aisle and journal pills
+   reach 12px past their words (margin -12px, padding 12px), so the first
+   pill lost 12px at the start. The row holds 14px at each end and steps out
+   by the same 14px: the words stay where they were and the pill fits with
+   2px to spare. The journal's line under the row was the row's own border;
+   it is a background now, inset by those 14px, so it keeps its length. */
+.k-shelf-head__tabs,
+.k-journal__tabs {
+  margin-inline: -14px;
+  padding-inline: 14px;
+}
+
+.k-journal__tabs {
+  border-bottom: 0;
+  background: linear-gradient(var(--k-line), var(--k-line)) 50% 100% / calc(100% - 28px) 1px no-repeat;
 }
