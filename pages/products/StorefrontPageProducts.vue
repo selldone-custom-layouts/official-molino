@@ -119,6 +119,7 @@ import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 import KalioQuickBuy from "../../components/kalio/KalioQuickBuy.vue";
 import { hostQuickBuy } from "../../components/kalio/kalio-listing-quick-buy";
 import { quickAdd } from "../../components/kalio/kalio-basket";
+import { aisleInLanguage } from "../../components/kalio/kalio-catalog";
 import "../../components/kalio/kalio-card-basket"; // a card in the basket shows − n +
 
 export default {
@@ -260,7 +261,13 @@ export default {
     },
     updateProductsSeo(data) {
       this.catalogue_total = typeof data?.total === "number" ? data.total : null;
-      StorefrontSeo.updateProducts(data, this.getShop(), this.seoNavigation);
+      /* The aisle's record comes in the shop's own language; the tab title
+         and the page's metadata name it as the header does (ES-05). */
+      const shop = this.getShop();
+      const navigation = this.seoNavigation;
+      aisleInLanguage(data?.parent || null).then((parent) =>
+        StorefrontSeo.updateProducts({ ...data, parent }, shop, navigation),
+      );
     },
   },
 };

@@ -18,6 +18,11 @@ export const JOURNAL_PHOTOS: Record<string, string> = {
   "keep-fruit-and-vegetables-fresh-longer": produce,
   "five-slow-weekend-breakfasts": breakfast,
   "keeping-bread-fresh": bread,
+  /* Their Spanish editions (kalio-design/spanish/blog, blog-editions.json). */
+  "una-semana-de-cenas-con-una-sola-compra": dinners,
+  "como-conservar-la-fruta-y-la-verdura-frescas-mas-tiempo": produce,
+  "cinco-desayunos-de-fin-de-semana-sin-prisas": breakfast,
+  "como-mantener-el-pan-tierno": bread,
 };
 
 /** The article with a cover: its own on Selldone, else the journal's photo. */
