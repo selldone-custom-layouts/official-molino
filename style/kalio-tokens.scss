@@ -265,7 +265,7 @@ s:has(> .u--price) {
   text-decoration: none;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 3px;
   }
 }

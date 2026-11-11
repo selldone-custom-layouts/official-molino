@@ -175,10 +175,16 @@
     color: var(--m-link);
   }
 
+  /* A link in the text: the brand ink and a heavier weight, never a line. */
   a:not(.k-btn) {
     color: var(--m-link) !important;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    font-weight: 650;
+    text-decoration: none !important;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--k-ink) !important;
+    }
   }
 
   img {
@@ -448,7 +454,7 @@
   text-decoration: none;
 
   &:hover .k-jentry__title {
-    text-decoration: underline;
+    text-decoration: none;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
   }
@@ -620,7 +626,7 @@
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
       }
     }
@@ -732,7 +738,7 @@
     -webkit-box-orient: vertical;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 }
@@ -961,7 +967,7 @@
     text-decoration: none;
 
     &:hover .k-post__cardtitle {
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 3px;
     }
   }

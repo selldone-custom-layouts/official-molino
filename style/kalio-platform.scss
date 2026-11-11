@@ -2134,7 +2134,7 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
 
     &:hover {
       color: var(--k-ink) !important;
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 3px;
     }
 
@@ -2155,15 +2155,25 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
    (a line drawn by a parent runs under every word inside it) and on the
    pieces Vuetify and Selldone put inside a button; it never touches a
    struck-through old price. Links inside an article's own text (.k-prose,
-   the shop's writing) keep theirs, so they stand out from the words. */
+   the shop's writing) stand out by the brand ink and weight, not a line
+   (the owner, 11 November 2026: no exception). */
 :where(a, button, summary, label, [role="button"], [role="link"], [role="tab"], .v-btn, .v-tab, .v-chip, .v-list-item),
 :where(a, button, [role="button"], .v-btn, .v-tab, .v-chip, .v-list-item) :where(.v-icon, i, .v-btn__content, .v-list-item-title, .single-line) {
   text-decoration: none !important;
 }
 
-.k-prose a {
-  text-decoration: underline !important;
-  text-underline-offset: 3px;
+.k-prose a:not(.k-btn) {
+  /* No line, ever (the owner): a link in running text is the brand ink,
+     a heavier weight, and deepens on hover and focus. */
+  color: var(--m-link) !important;
+  font-weight: 650;
+  text-decoration: none !important;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--k-ink) !important;
+    text-decoration: none !important;
+  }
 }
 
 /* Words inside a link or a button (an em, a span) carry no line either: the
@@ -2173,4 +2183,13 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
    a line drawn by the link itself still runs under its words). */
 :where(a, button, [role="button"], [role="link"]) :where(em, span, b, strong, small, i, p, h1, h2, h3, h4, div) {
   text-decoration: none !important;
+}
+
+/* Selldone's "Continue with Google" button is white on Google's #4285f4,
+   3.6:1. A deeper Google blue keeps the brand and reads 5.9:1 (11 November
+   2026, found by the contrast audit on an article's sign-in box). */
+.v-btn[style*="#4285f4" i],
+.v-btn[style*="66, 133, 244"] {
+  background-color: #1a5fd0 !important;
+  color: #fff !important;
 }

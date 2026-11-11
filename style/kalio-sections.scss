@@ -601,7 +601,7 @@ html[dir="rtl"] .k-flip,
 
 a.k-by:hover {
   color: var(--m-link) !important;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 2px;
 }
 
@@ -1137,7 +1137,7 @@ $k-shelf-pic-phone: 150px;
     text-decoration: none;
 
     &:hover .k-shelf__name {
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 2px;
     }
   }
@@ -1488,7 +1488,7 @@ $k-shelf-pic-phone: 150px;
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
       }
     }
@@ -1938,7 +1938,7 @@ $k-shelf-pic-phone: 150px;
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
 

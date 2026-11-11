@@ -47,7 +47,10 @@
     .s--product-spec td,
     .s--product-spec th,
     .s--product-spec li,
-    .s--product-section-article :is(p, li, h1, h2, h3, h4, h5, h6, td, th, blockquote, figcaption)
+    .s--product-section-article :is(p, li, h1, h2, h3, h4, h5, h6, td, th, blockquote, figcaption),
+    /* the filter panel's option chips (brands, sizes, spec values) and spec names */
+    .s--storefront-products-filter-menu .v-chip__content,
+    .s--storefront-products-filter-menu .s-filter-header > span
   ) {
   /* !important: Selldone's article text carries its own unicode-bidi (embed). */
   unicode-bidi: plaintext !important;
@@ -117,4 +120,14 @@ html[dir="rtl"] {
   .k-strip.-more.-back > .k-strip__row {
     mask-image: linear-gradient(to left, transparent, #000 72px, #000 calc(100% - 72px), transparent);
   }
+}
+
+/* ▆▆▆▆▆▆▆▆ No letter-spacing on joined scripts (11 November 2026) ▆▆▆▆▆▆▆▆
+   Arabic letters join, and Gurmukhi and Devanagari hang from a headline:
+   tracking an eyebrow, a button, a label or a heading pulls them apart. In
+   those languages every tracked piece is set solid (Dino found it, 1.0.23).
+   The discount badge keeps its own word-spacing (it closes "20 %"). */
+:is(:lang(ar), :lang(fa), :lang(ur), :lang(pa), :lang(hi), :lang(mr)) :not(.discount-percent) {
+  letter-spacing: 0 !important;
+  word-spacing: normal !important;
 }

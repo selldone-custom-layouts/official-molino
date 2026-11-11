@@ -866,7 +866,7 @@ $k-header-strip: 46px;
     }
 
     &:hover span {
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 2px;
     }
   }
@@ -1121,7 +1121,7 @@ $k-header-strip: 46px;
 
       &:hover {
         color: #fff !important;
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
       }
     }
@@ -2205,7 +2205,7 @@ $k-filter-gap: 36px;
   a {
     color: var(--m-link) !important;
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none;
     text-underline-offset: 2px;
   }
 }

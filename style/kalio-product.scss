@@ -33,7 +33,7 @@
     font-weight: 500;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 3px;
     }
   }
@@ -120,7 +120,7 @@
       text-decoration: none;
 
       &:hover {
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
       }
     }
@@ -734,7 +734,7 @@
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-underline-offset: 2px;
     }
   }
