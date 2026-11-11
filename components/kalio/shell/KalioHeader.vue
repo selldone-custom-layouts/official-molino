@@ -59,7 +59,7 @@
                 <span :style="{ '--k-tint': tint(aisle) }" class="k-mega__ring">
                   <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="40" width="40" loading="lazy" />
                 </span>
-                {{ aisle.title || aisle.name }}
+                <bdi>{{ aisle.title || aisle.name }}</bdi>
               </router-link>
             </div>
             <div class="k-mega__foot">
@@ -190,7 +190,7 @@
           :to="aisleRoute(aisle)"
           class="k-strip__link"
         >
-          {{ aisle.title || aisle.name }}
+          <bdi>{{ aisle.title || aisle.name }}</bdi>
         </router-link>
       </div>
       <button v-if="strip_more" :aria-label="t('header.strip.more', 'More aisles')" class="k-strip__nudge -on" tabindex="-1" type="button" @click="stripNudge(1)">
@@ -238,7 +238,7 @@
                 @click="basket = false"
               >
                 <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="32" width="32" loading="lazy" />
-                {{ aisle.title || aisle.name }}
+                <bdi>{{ aisle.title || aisle.name }}</bdi>
               </router-link>
             </nav>
           </template>
@@ -286,7 +286,7 @@
           <span :style="{ '--k-tint': tint(aisle) }" class="k-drawer__ring">
             <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="26" width="26" loading="lazy" />
           </span>
-          {{ aisle.title || aisle.name }}
+          <bdi>{{ aisle.title || aisle.name }}</bdi>
         </router-link>
         <template v-if="menuAislesMore.length">
           <div id="k-drawer-more" :class="{ '-open': menu_more }" :inert="!menu_more || null" class="k-drawer__more">
@@ -302,7 +302,7 @@
                 <span :style="{ '--k-tint': tint(aisle) }" class="k-drawer__ring">
                   <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="26" width="26" loading="lazy" />
                 </span>
-                {{ aisle.title || aisle.name }}
+                <bdi>{{ aisle.title || aisle.name }}</bdi>
               </router-link>
             </div>
           </div>

@@ -35,7 +35,7 @@
           @click="choose(aisle)"
         >
           <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="32" width="32" />
-          {{ aisle.title || aisle.name }}
+          <bdi>{{ aisle.title || aisle.name }}</bdi>
         </button>
       </div>
 

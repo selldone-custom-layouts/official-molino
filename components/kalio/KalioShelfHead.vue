@@ -18,8 +18,8 @@
     <nav v-if="crumbs.length" :aria-label="t('listing.breadcrumb', 'Breadcrumb')" class="k-shelf-head__crumbs">
       <template v-for="(crumb, i) in crumbs" :key="i">
         <v-icon v-if="i" aria-hidden="true" class="k-flip" size="16">chevron_right</v-icon>
-        <router-link v-if="crumb.to" :to="crumb.to">{{ crumb.label }}</router-link>
-        <span v-else aria-current="page">{{ crumb.label }}</span>
+        <router-link v-if="crumb.to" :to="crumb.to"><bdi>{{ crumb.label }}</bdi></router-link>
+        <span v-else aria-current="page"><bdi>{{ crumb.label }}</bdi></span>
       </template>
     </nav>
 

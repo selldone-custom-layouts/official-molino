@@ -1,0 +1,120 @@
+/* ▆▆▆▆▆▆▆▆ Merchant text in either direction (11 November 2026) ▆▆▆▆▆▆▆▆
+
+   What the merchant writes (product, aisle, brand and seller names,
+   descriptions, spec values, article text) keeps its own direction on a
+   page of the other direction: an English "Breads & Bakery." on an Arabic
+   page keeps its full stop at its end, an Arabic name on an English page
+   reads right to left. unicode-bidi: plaintext takes each paragraph's
+   direction from its first strong letter. Text nodes without a class of
+   their own are wrapped in <bdi> (or carry dir="auto") in the templates
+   instead: the header and phone menu aisle rows, the aisle strip, the
+   empty basket's chips, the footer's aisles, sellers and shop links, the
+   hero chips, shelf tabs, "often added", the basket drawer's lines and the
+   aisle header's breadcrumb.
+
+   The same list is in new-shop-kits/i18n/README.md, for every Layout. */
+
+:is(
+    /* Kalio's own pieces */
+    .k-pdp__title,
+    .k-pdp__sub,
+    .k-pdp__aisle,
+    .k-pdp__brand,
+    .k-shelf-head__title,
+    .k-shelf-head__lede,
+    .k-shelf__name,
+    .k-aisle__label,
+    .k-aisle-index__name,
+    .k-aisle-index__lede,
+    .k-mtile__title,
+    .k-mtile__lede,
+    .k-seller__name,
+    .k-offer__name,
+    .k-again__name,
+    .k-lines__title,
+    .k-lines__name,
+    .k-cmp__nm,
+    .k-cmp-add__nm,
+    .k-mini__name,
+    .k-jentry__title,
+    .k-jentry__lede,
+    .k-footer__lede,
+    .k-rail__title,
+    /* Selldone's pieces Kalio shows */
+    .s--product-card .toggle-hidden-on-hover .font-weight-bold,
+    .s--product-card .row-pro-title,
+    .s--title-en,
+    .s--product-spec td,
+    .s--product-spec th,
+    .s--product-spec li,
+    .s--product-section-article :is(p, li, h1, h2, h3, h4, h5, h6, td, th, blockquote, figcaption)
+  ) {
+  /* !important: Selldone's article text carries its own unicode-bidi (embed). */
+  unicode-bidi: plaintext !important;
+}
+
+/* ▆▆▆▆▆▆▆▆ Signed numbers stay in one piece (11 November 2026) ▆▆▆▆▆▆▆▆
+   On an Arabic page "−20%" read "20%−" and "+3" read "3+": a discount
+   badge, a "+N more" and any signed number or range is one left-to-right
+   piece inside the sentence. */
+:is(
+    .discount-percent,
+    .k-cmp__off,
+    .k-board__thumb.-more,
+    .k-mtile__sticker strong
+  ) {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* ▆▆▆▆▆▆▆▆ Mirrored for right to left (11 November 2026) ▆▆▆▆▆▆▆▆
+   Anything that runs from one side (a progress fill, a star rating, the
+   fade at the end of a scrolling row, a scrim under words on a photo)
+   starts from the right in Arabic. <html dir> is set by kalio-i18n; the
+   rows' "-more"/"-back" states already follow scrollLeft's sign. */
+html[dir="rtl"] {
+  .k-stars {
+    background: linear-gradient(270deg, var(--k-amber) calc(var(--k-rate) * 20%), var(--k-star-off) 0);
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+
+  .k-ocardx__trail li.-now .k-ocardx__seg {
+    background: linear-gradient(270deg, var(--k-green) 50%, var(--k-line) 50%);
+  }
+
+  .k-ahome__steps li.-now::before {
+    background: linear-gradient(270deg, var(--k-green) 0 14px, var(--k-line) 14px);
+  }
+
+  /* (on a phone the order's steps stand in a column: no mirror there) */
+  @media (min-width: 701px) {
+    .k-order__step.-now::before {
+      background: linear-gradient(270deg, var(--k-green) 0 13px, var(--k-line) 13px);
+    }
+  }
+
+  .k-shelf-head__tabs-wrap:not(.-at-end) .k-shelf-head__tabs {
+    mask-image: linear-gradient(270deg, #000 calc(100% - 72px), transparent);
+  }
+
+  .k-shelf-head__tabs-wrap:not(.-at-start):not(.-at-end) .k-shelf-head__tabs {
+    mask-image: linear-gradient(270deg, transparent, #000 72px, #000 calc(100% - 72px), transparent);
+  }
+
+  .k-shelf-head__tabs-wrap:not(.-at-start).-at-end .k-shelf-head__tabs {
+    mask-image: linear-gradient(270deg, transparent, #000 72px);
+  }
+
+  .k-strip.-more > .k-strip__row {
+    mask-image: linear-gradient(to left, #000 calc(100% - 72px), transparent);
+  }
+
+  .k-strip.-back > .k-strip__row {
+    mask-image: linear-gradient(to right, #000 calc(100% - 72px), transparent);
+  }
+
+  .k-strip.-more.-back > .k-strip__row {
+    mask-image: linear-gradient(to left, transparent, #000 72px, #000 calc(100% - 72px), transparent);
+  }
+}

@@ -45,7 +45,7 @@
           <nav :aria-label="t('hero.aislesWithDeals', 'Aisles with deals')" class="k-counter__chips">
             <router-link v-for="aisle in chips" :key="aisle.id" :to="aisleRoute(aisle)" class="k-counter__chip">
               <img v-if="aisle.icon" :src="aisleImage(aisle, 64)" alt="" height="26" width="26" />
-              {{ aisle.title || aisle.name }}
+              <bdi>{{ aisle.title || aisle.name }}</bdi>
             </router-link>
           </nav>
         </div>

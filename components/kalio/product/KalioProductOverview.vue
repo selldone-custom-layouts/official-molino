@@ -72,7 +72,9 @@
             :preferences="preferences"
             :selected-vendor-product="selected_vendor_product"
           ></s-product-section-price>
-          <s-product-section-tax></s-product-section-tax>
+          <!-- Keyed by the visitor's currency: its "free over" amount is read
+               when drawn, so it redraws the moment the shopper picks. -->
+          <s-product-section-tax :key="cardCurrency()"></s-product-section-tax>
           <s-product-section-cashback :amount="0" :currency="GetUserSelectedCurrency()?.code"></s-product-section-cashback>
         </div>
 
@@ -193,6 +195,7 @@
 </template>
 
 <script>
+import { currentCurrency } from "../../region-switcher/region";
 import { computed } from "vue";
 import SProductOverview from "@selldone/components-vue/storefront/product/overview/SProductOverview.vue";
 import KalioSellerOffers from "./KalioSellerOffers.vue";
@@ -241,6 +244,7 @@ export default {
   },
 
   methods: {
+    cardCurrency: currentCurrency,
     toReviews() {
       document.getElementById("k-reviews")?.scrollIntoView({ behavior: "smooth", block: "start" });
     },

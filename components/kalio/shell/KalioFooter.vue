@@ -59,7 +59,7 @@
           <h3 id="k-footer-shop" class="k-footer__head">{{ t("header.aisles", "Aisles") }}</h3>
           <router-link :to="dealsRoute">{{ t("header.deals", "Deals") }}</router-link>
           <router-link v-for="aisle in aisleList.slice(0, 8)" :key="aisle.id" :to="aisleRoute(aisle)">
-            {{ aisle.title || aisle.name }}
+            <bdi>{{ aisle.title || aisle.name }}</bdi>
           </router-link>
           <router-link v-if="aisleList.length > 8" :to="catalogueRoute" class="-more">{{ t("footer.allAisles", "All aisles") }}</router-link>
         </nav>
@@ -68,13 +68,13 @@
           <h3 id="k-footer-sellers" class="k-footer__head">{{ t("footer.sellers", "Sellers") }}</h3>
           <router-link v-for="seller in sellerList" :key="seller.id" :to="sellerRoute(seller)" class="k-footer__seller">
             <img v-if="seller.icon" :src="vendorImage(seller, true)" alt="" height="28" width="28" loading="lazy" />
-            {{ seller.name }}
+            <bdi>{{ seller.name }}</bdi>
           </router-link>
         </nav>
 
         <nav aria-labelledby="k-footer-help" class="k-footer__col">
           <h3 id="k-footer-help" class="k-footer__head">{{ shopTitle }}</h3>
-          <router-link v-for="(item, i) in shopLinks" :key="'l' + i" :to="item.to">{{ item.name }}</router-link>
+          <router-link v-for="(item, i) in shopLinks" :key="'l' + i" :to="item.to"><bdi>{{ item.name }}</bdi></router-link>
         </nav>
 
         <nav aria-labelledby="k-footer-account" class="k-footer__col">

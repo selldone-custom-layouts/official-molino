@@ -29,7 +29,7 @@
           </button>
         </div>
         <router-link :to="productRoute(product.id)" class="k-often__name" @click="$emit('navigate')">
-          {{ product.title }}
+          <bdi>{{ product.title }}</bdi>
         </router-link>
         <u-price :amount="priceOf(product).now" :currency="priceOf(product).currency" class="k-often__price" />
       </div>

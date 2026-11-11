@@ -41,7 +41,7 @@
             <img v-if="image(item.product)" :src="image(item.product)" alt="" height="36" loading="lazy" width="36" />
           </router-link>
           <router-link :to="productRoute(item.product_id)" class="k-bdrawer__name" @click="$emit('close')">
-            <span>{{ item.product?.title }}</span>
+            <span dir="auto">{{ item.product?.title }}</span>
             <small v-if="meta(item)">{{ meta(item) }}</small>
           </router-link>
           <div
